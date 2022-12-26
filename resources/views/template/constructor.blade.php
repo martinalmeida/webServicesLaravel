@@ -53,7 +53,59 @@
                         <img src="{{asset('/build/img/card-backgrounds/banner.png')}}" class="cover" alt="cover">
                     </div>
                     <ul id="js-nav-menu" class="nav-menu">
-                        menu
+
+                        <li class="nav-title">Navigation Title</li>
+                        <li>
+                            <a href="#" title="Category" data-filter-tags="category">
+                                <i class="fal fa-file"></i>
+                                <span class="nav-link-text" data-i18n="nav.category">Category</span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="javascript:void(0);" title="Menu child" data-filter-tags="utilities menu child">
+                                        <span class="nav-link-text" data-i18n="nav.utilities_menu_child">Sub-category</span>
+                                    </a>
+                                    <ul>
+                                        <li>
+                                            <a href="javascript:void(0);" title="Sublevel Item" data-filter-tags="utilities menu child sublevel item">
+                                                <span class="nav-link-text" data-i18n="nav.utilities_menu_child_sublevel_item">Sublevel Item</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0);" title="Another Item" data-filter-tags="utilities menu child another item">
+                                                <span class="nav-link-text" data-i18n="nav.utilities_menu_child_another_item">Another Item</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="disabled">
+                                    <a href="javascript:void(0);" title="Disabled item" data-filter-tags="utilities disabled item">
+                                        <span class="nav-link-text" data-i18n="nav.utilities_disabled_item">Disabled item</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- Example of open and active states -->
+                        <li class="active open">
+                            <a href="#" title="Category" data-filter-tags="category">
+                                <i class="fal fa-plus"></i>
+                                <span class="nav-link-text" data-i18n="nav.category">Open Item</span>
+                            </a>
+                            <ul>
+                                <li class="active open">
+                                    <a href="javascript:void(0);" title="Menu child" data-filter-tags="utilities menu child">
+                                        <span class="nav-link-text" data-i18n="nav.utilities_menu_child">Open Sub-category</span>
+                                    </a>
+                                    <ul>
+                                        <li class="active">
+                                            <a href="javascript:void(0);" title="Sublevel Item" data-filter-tags="utilities menu child sublevel item">
+                                                <span class="nav-link-text" data-i18n="nav.utilities_menu_child_sublevel_item">Active Item</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                     <div class="filter-message js-filter-message bg-success-600"></div>
                 </nav>
