@@ -501,8 +501,6 @@ Pagina de Usuarios
     <script>
         $(document).ready(function()
             {
-
-                // initialize datatable
                 $('#dt-basic-example').dataTable(
                 {
                     responsive: true,
@@ -534,12 +532,6 @@ Pagina de Usuarios
                         "<'row'<'col-sm-12'tr>>" +
                         "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
                     buttons: [
-                        /*{
-                        	extend:    'colvis',
-                        	text:      'Column Visibility',
-                        	titleAttr: 'Col visibility',
-                        	className: 'mr-sm-3'
-                        },*/
                         {
                             extend: 'pdfHtml5',
                             text: 'PDF',
@@ -557,18 +549,6 @@ Pagina de Usuarios
                             text: 'CSV',
                             titleAttr: 'Generate CSV',
                             className: 'btn-outline-primary btn-sm mr-1'
-                        },
-                        {
-                            extend: 'copyHtml5',
-                            text: 'Copy',
-                            titleAttr: 'Copy to clipboard',
-                            className: 'btn-outline-primary btn-sm mr-1'
-                        },
-                        {
-                            extend: 'print',
-                            text: 'Print',
-                            titleAttr: 'Print Table',
-                            className: 'btn-outline-primary btn-sm'
                         }
                     ]
                 });

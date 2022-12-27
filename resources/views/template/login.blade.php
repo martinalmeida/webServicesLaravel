@@ -17,6 +17,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{asset('/build/img/favicon/apple-touch-icon.png')}}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{asset('/build/img/favicon/favicon-32x32.png')}}">
     <link rel="mask-icon" href="{{asset('/build/img/favicon/safari-pinned-tab.svg')}}" color="#5bbad5">
+    <link rel="stylesheet" media="screen, print" href="{{asset('/build/css/notifications/toastr/toastr.css')}}">
 </head>
 
 <body>
@@ -134,9 +135,9 @@
     </p>
     <script src="{{asset('/js/vendors.bundle.js')}}"></script>
     <script src="{{asset('/js/app.bundle.js')}}"></script>
+    <script src="{{asset('/js/notifications/toastr/toastr.js')}}"></script>
     <script src="{{asset('/js/notifications/sweetalert2/sweetalert2@9.js')}}"></script>
     <script src="{{asset('/js/validaciones.js')}}"></script>
-    <script src="{{asset('/js/globales.js')}}"></script>
     <script>
         $('#btnLogin').click(function(event) {
             var form = $('#frmLogin')

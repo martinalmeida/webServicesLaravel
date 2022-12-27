@@ -16,7 +16,7 @@ Nombre de Vista
             <img src="{{asset('/build/img/logo.png')}}" width="100" height="100" class="rounded-circle shadow-2 img-thumbnail" alt="">
             <h5 class="mb-0 fw-700 text-center mt-3">
                 BIENVENIDO A VOLAPP USUARIO
-                <small class="text-muted mb-0">empresa nit: 9999999</small>
+                <small class="text-muted mb-0">COOSERSUM nit: 829004210</small>
 
             </h5>
         </div>

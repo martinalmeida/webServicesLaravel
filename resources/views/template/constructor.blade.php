@@ -45,67 +45,55 @@
                         <div class="info-card-text">
                             <a href="#" class="d-flex align-items-center text-white">
                                 <span class="text-truncate text-truncate-sm d-inline-block">
-                                    usuario ejemplo
+                                    {{ auth()->user()->name }}
                                 </span>
                             </a>
-                            <span class="d-inline-block text-truncate text-truncate-sm">@ usuario</span>
+                            <span class="d-inline-block text-truncate text-truncate-sm">@ {{ auth()->user()->name }}</span>
                         </div>
                         <img src="{{asset('/build/img/card-backgrounds/banner.png')}}" class="cover" alt="cover">
                     </div>
                     <ul id="js-nav-menu" class="nav-menu">
 
-                        <li class="nav-title">Navigation Title</li>
-                        <li>
-                            <a href="#" title="Category" data-filter-tags="category">
-                                <i class="fal fa-file"></i>
-                                <span class="nav-link-text" data-i18n="nav.category">Category</span>
-                            </a>
-                            <ul>
-                                <li>
-                                    <a href="javascript:void(0);" title="Menu child" data-filter-tags="utilities menu child">
-                                        <span class="nav-link-text" data-i18n="nav.utilities_menu_child">Sub-category</span>
-                                    </a>
-                                    <ul>
-                                        <li>
-                                            <a href="javascript:void(0);" title="Sublevel Item" data-filter-tags="utilities menu child sublevel item">
-                                                <span class="nav-link-text" data-i18n="nav.utilities_menu_child_sublevel_item">Sublevel Item</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);" title="Another Item" data-filter-tags="utilities menu child another item">
-                                                <span class="nav-link-text" data-i18n="nav.utilities_menu_child_another_item">Another Item</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="disabled">
-                                    <a href="javascript:void(0);" title="Disabled item" data-filter-tags="utilities disabled item">
-                                        <span class="nav-link-text" data-i18n="nav.utilities_disabled_item">Disabled item</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <!-- Example of open and active states -->
-                        <li class="active open">
-                            <a href="#" title="Category" data-filter-tags="category">
-                                <i class="fal fa-plus"></i>
-                                <span class="nav-link-text" data-i18n="nav.category">Open Item</span>
-                            </a>
-                            <ul>
-                                <li class="active open">
-                                    <a href="javascript:void(0);" title="Menu child" data-filter-tags="utilities menu child">
-                                        <span class="nav-link-text" data-i18n="nav.utilities_menu_child">Open Sub-category</span>
-                                    </a>
-                                    <ul>
-                                        <li class="active">
-                                            <a href="javascript:void(0);" title="Sublevel Item" data-filter-tags="utilities menu child sublevel item">
-                                                <span class="nav-link-text" data-i18n="nav.utilities_menu_child_sublevel_item">Active Item</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
+                        <li class="nav-title">WebServices Menu</li>
+
+                        @if (auth()->user()->rolId === 1)
+                            <li>
+                                <a href="#" title="Category" data-filter-tags="category">
+                                    <i class="fal fa-user-cog"></i>
+                                    <span class="nav-link-text" data-i18n="nav.category">Adminstrar</span>
+                                </a>
+                                <ul>
+                                    <li>
+                                        <a href="/users" title="Disabled item" data-filter-tags="utilities disabled item">
+                                            <span class="nav-link-text" data-i18n="nav.utilities_menu_child_another_item">Usuarios</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);" title="Disabled item" data-filter-tags="utilities disabled item">
+                                            <span class="nav-link-text" data-i18n="nav.utilities_menu_child_another_item">Asignacion Placas</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);" title="Disabled item" data-filter-tags="utilities disabled item">
+                                            <span class="nav-link-text" data-i18n="nav.utilities_menu_child_another_item">Roles</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#" title="Category" data-filter-tags="category">
+                                    <i class="fal fa-file-chart-line"></i>
+                                    <span class="nav-link-text" data-i18n="nav.category">Informes Socios</span>
+                                </a>
+                            </li>
+                        @elseif (auth()->user()->rolId === 2)
+                            <li>
+                                <a href="#" title="Category" data-filter-tags="category">
+                                    <i class="fal fa-file-chart-line"></i>
+                                    <span class="nav-link-text" data-i18n="nav.category">Informes Socios</span>
+                                </a>
+                            </li>
+                        @endif
                     </ul>
                     <div class="filter-message js-filter-message bg-success-600"></div>
                 </nav>
@@ -157,8 +145,8 @@
                                             <img src="{{asset('/build/img/logo.png')}}" class="rounded-circle profile-image" alt="Dr. Codex Lantern">
                                         </span>
                                         <div class="info-card-text">
-                                            <div class="fs-lg text-truncate text-truncate-lg">usuario</div>
-                                            <span class="text-truncate text-truncate-md opacity-80">correo</span>
+                                            <div class="fs-lg text-truncate text-truncate-lg">{{ auth()->user()->name }}</div>
+                                            <span class="text-truncate text-truncate-md opacity-80">{{ auth()->user()->email }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -179,9 +167,9 @@
                                     <i class="float-right text-muted fw-n">Ctrl + P</i>
                                 </a>
                                 <div class="dropdown-divider m-0"></div>
-                                <a class="dropdown-item fw-500 pt-3 pb-3" onclick="cerrarSesion();">
+                                <a class="dropdown-item fw-500 pt-3 pb-3" href="/logout">
                                     <span data-i18n="drpdwn.page-logout">Salir</span>
-                                    <span class="float-right fw-n">@ usuario</span>
+                                    <span class="float-right fw-n">@ {{ auth()->user()->name }}</span>
                                 </a>
                             </div>
                         </div>
@@ -302,7 +290,7 @@
         <a href="#" class="menu-item btn" data-toggle="tooltip" data-placement="left" title="Arriba">
             <i class="fal fa-arrow-up"></i>
         </a>
-        <a onclick="cerrarSesion();" class="menu-item btn" data-toggle="tooltip" data-placement="left" title="Salir">
+        <a href="/logout" class="menu-item btn" data-toggle="tooltip" data-placement="left" title="Salir">
             <i class="fal fa-sign-out"></i>
         </a>
         <a href="#" class="menu-item btn" data-action="app-fullscreen" data-toggle="tooltip" data-placement="left" title="Pantalla Completa">
@@ -966,7 +954,6 @@
     <script src="{{asset('/js/formplugins/inputmask/inputmask.bundle.js')}}"></script>
     <script src="{{asset('/js/notifications/sweetalert2/sweetalert2@9.js')}}"></script>
     <script src="{{asset('/js/validaciones.js')}}"></script>
-    <script src="{{asset('/js/globales.js')}}"></script>
     <script src="{{asset('/js/datagrid/datatables/datatables.bundle.js')}}"></script>
     <script src="{{asset('/js/datagrid/datatables/datatables.export.js')}}"></script>
     @yield('script')
