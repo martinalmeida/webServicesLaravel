@@ -3,23 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\Rol;
 use DataTables;
 
-
-class UserController extends Controller
+class RolController extends Controller
 {
     public function index()
     {
-        return view('users.users');
+        return view('roles.roles');
     }
 
 
-    public function dataTableUser(Request $request)
+    public function dataTableRol(Request $request)
     {
         if ($request->ajax()) {
-            $data = User::join('roles', 'roles.id', '=', 'users.rolId')
-                ->get(['users.id', 'roles.rol', 'users.name', 'users.email']);
+            $data = Rol::select('id', 'rol', 'descripcion')->get();
             return Datatables::of($data)->addIndexColumn()
                 ->addColumn('action', function ($row) {
                     $butons = '<a onclick="window.alert(' . $row['id'] . ');" class="btn btn-primary btn-sm">Editar</a>';
@@ -28,6 +26,6 @@ class UserController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-        return view('tablaUsers');
+        return view('tablaRoles');
     }
 }

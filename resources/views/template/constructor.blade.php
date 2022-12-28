@@ -74,7 +74,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0);" title="Disabled item" data-filter-tags="utilities disabled item">
+                                        <a href="/roles" title="Disabled item" data-filter-tags="utilities disabled item">
                                             <span class="nav-link-text" data-i18n="nav.utilities_menu_child_another_item">Roles</span>
                                         </a>
                                     </li>
