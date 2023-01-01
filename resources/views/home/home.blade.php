@@ -4,8 +4,9 @@
     VolApp - Home
 @endsection
 
-@section('name')
-Nombre de Vista
+@section('head')
+<x-header title="Inicio">
+</x-header>
 @endsection
 
 @section('content')

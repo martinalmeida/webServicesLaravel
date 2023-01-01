@@ -1,22 +1,25 @@
 @extends('template.constructor')
 
 @section('title')
-    VolApp - Roles
+    VolApp - Asignar
 @endsection
 
 @section('head')
-<x-header title="Roles">
+<x-header title="Asignar Placas a Usuarios">
+    <button type="button" class="btn btn-info active" onclick="showModalRegistro();">Agregar <i class="fal fa-plus-square"></i></button>
 </x-header>
 @endsection
 
 @section('content')
-<x-panel title="Tabla Roles" subTitle="solo se puede visualizar información">
-    <x-table id="tablaRoles">
+<x-panel title="Tabla Asiganar" subTitle="Asignación de placas a usuarios.">
+    <x-table id="tablAsdignar">
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Rol</th>
-                <th>Descripción</th>
+                <th>Usuario</th>
+                <th>Placa</th>
+                <th>Estado</th>
+                <th width="100px">Acciones</th>
             </tr>
         </thead>
         <tbody></tbody>
@@ -25,20 +28,22 @@
 @endsection
 
 @section('subName')
-Pagina de Roles
+Pagina de Asignar Placar a Usuarios
 @endsection
 
 @section('script')
     <script type="text/javascript">
         $(function () {
-        var table = $('#tablaRoles').DataTable({
+        var table = $('#tablAsdignar').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('table.roles') }}",
+            ajax: "{{ route('table.asignar') }}",
             columns: [
                 {data: 'id', name: 'id'},
-                {data: 'rol', name: 'rol'},
-                {data: 'descripcion', name: 'descripcion'},
+                {data: 'name', name: 'name'},
+                {data: 'placaId', name: 'placaId'},
+                {data: 'status', name: 'status'},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
             responsive: true,
             lengthChange: false,

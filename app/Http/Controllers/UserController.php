@@ -19,7 +19,8 @@ class UserController extends Controller
     {
         if ($request->ajax()) {
             $data = User::join('roles', 'roles.id', '=', 'users.rolId')
-                ->get(['users.id', 'roles.rol', 'users.name', 'users.email']);
+                ->join('status', 'status.id', '=', 'users.status')
+                ->get(['users.id', 'roles.rol', 'users.name', 'users.email', 'status.status']);
             return Datatables::of($data)->addIndexColumn()
                 ->addColumn('action', function ($row) {
                     $butons = '<a onclick="window.alert(' . $row['id'] . ');" class="btn btn-primary btn-sm">Editar</a>';

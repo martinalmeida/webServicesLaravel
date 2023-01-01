@@ -69,7 +69,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0);" title="Disabled item" data-filter-tags="utilities disabled item">
+                                        <a href="/asignar" title="Disabled item" data-filter-tags="utilities disabled item">
                                             <span class="nav-link-text" data-i18n="nav.utilities_menu_child_another_item">Asignacion Placas</span>
                                         </a>
                                     </li>
@@ -185,11 +185,7 @@
                     <div class="subheader"></div>
 
                     <!-- ========== Inicio Componente de Vista ========== -->
-                    <div class="subheader">
-                        <h1 class="subheader-title">
-                            <i class='fal fa-info-circle'></i> @yield('name')
-                        </h1>
-                    </div>
+                    @yield('head')
 
                     <div class="row">
 

@@ -18,13 +18,7 @@ class RolController extends Controller
     {
         if ($request->ajax()) {
             $data = Rol::select('id', 'rol', 'descripcion')->get();
-            return Datatables::of($data)->addIndexColumn()
-                ->addColumn('action', function ($row) {
-                    $butons = '<a onclick="window.alert(' . $row['id'] . ');" class="btn btn-primary btn-sm">Editar</a>';
-                    return $butons;
-                })
-                ->rawColumns(['action'])
-                ->make(true);
+            return Datatables::of($data)->addIndexColumn()->make(true);
         }
         return view('tablaRoles');
     }
