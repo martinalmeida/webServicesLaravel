@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ES">
+
 <head>
     <meta charset="utf-8">
     <title>
@@ -10,28 +11,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no, minimal-ui">
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="msapplication-tap-highlight" content="no">
-    <link id="vendorsbundle" rel="stylesheet" media="screen, print" href="{{asset('/build/css/vendors.bundle.css')}}">
-    <link id="appbundle" rel="stylesheet" media="screen, print" href="{{asset('/build/css/app.bundle.css')}}">
+    <link id="vendorsbundle" rel="stylesheet" media="screen, print" href="{{ asset('/build/css/vendors.bundle.css') }}">
+    <link id="appbundle" rel="stylesheet" media="screen, print" href="{{ asset('/build/css/app.bundle.css') }}">
     <link id="mytheme" rel="stylesheet" media="screen, print" href="#">
-    <link id="myskin" rel="stylesheet" media="screen, print" href="{{asset('/build/css/skins/skin-master.css')}}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{asset('/build/img/favicon/apple-touch-icon.png')}}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{asset('/build/img/favicon/favicon-32x32.png')}}">
-    <link rel="mask-icon" href="{{asset('/build/img/favicon/safari-pinned-tab.svg')}}" color="#5bbad5">
-    <link rel="stylesheet" media="screen, print" href="{{asset('/build/css/notifications/toastr/toastr.css')}}">
+    <link id="myskin" rel="stylesheet" media="screen, print" href="{{ asset('/build/css/skins/skin-master.css') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/build/img/favicon/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('/build/img/favicon/favicon-32x32.png') }}">
+    <link rel="mask-icon" href="{{ asset('/build/img/favicon/safari-pinned-tab.svg') }}" color="#5bbad5">
+    <link rel="stylesheet" media="screen, print" href="{{ asset('/build/css/notifications/toastr/toastr.css') }}">
 </head>
 
 <body>
     <div class="page-wrapper auth">
         <div class="page-inner bg-brand-gradient">
             <div class="page-content-wrapper bg-transparent m-6">
-                <div class="flex-1" style="background: url({{asset('/build/img/svg/pattern-1.svg')}}) no-repeat center bottom fixed; background-size: cover;">
+                <div class="flex-1"
+                    style="background: url({{ asset('/build/img/svg/pattern-1.svg') }}) no-repeat center bottom fixed; background-size: cover;">
                     <div class="container py-4 py-lg-5 my-lg-5 px-4 px-sm-0">
                         <div class="row">
                             <div class="col col-md-6 col-lg-7 hidden-sm-down">
                                 <h2 class="fs-xxl fw-500 mt-4 text-white">
-                                    <img class="img-fluid mx-auto d-block" src="{{asset('/build/img/logo-login.png')}}" alt="VolApp">
+                                    <img class="img-fluid mx-auto d-block"
+                                        src="{{ asset('/build/img/logo-login.png') }}" alt="VolApp">
                                     <small class="h3 fw-300 mt-2 mb-5 text-white opacity-60 text-center">
-                                        <b>Soluciones de software para negocios orientados al <br> transporte de carga pesada.</b>
+                                        <b>Soluciones de software para negocios orientados al <br> transporte de carga
+                                            pesada.</b>
                                     </small>
                                 </h2>
                                 <!-- <a href="#" class="fs-lg fw-500 text-white opacity-70">Ver más &gt;&gt;</a> -->
@@ -58,11 +62,11 @@
                                 </h1>
                                 <div class="card p-4 rounded-plus bg-faded">
 
-                                        @yield('content')
-                        
-                                    </div>
+                                    @yield('content')
+
                                 </div>
                             </div>
+                        </div>
                         <div class="position-absolute pos-bottom pos-left pos-right p-3 text-center text-white m-4">
                             2022 © VOLAPP
                         </div>
@@ -133,11 +137,11 @@
         <span class="color-fusion-800"></span>
         <span class="color-fusion-900"></span>
     </p>
-    <script src="{{asset('/js/vendors.bundle.js')}}"></script>
-    <script src="{{asset('/js/app.bundle.js')}}"></script>
-    <script src="{{asset('/js/notifications/toastr/toastr.js')}}"></script>
-    <script src="{{asset('/js/notifications/sweetalert2/sweetalert2@9.js')}}"></script>
-    <script src="{{asset('/js/validaciones.js')}}"></script>
+    <script src="{{ asset('/js/vendors.bundle.js') }}"></script>
+    <script src="{{ asset('/js/app.bundle.js') }}"></script>
+    <script src="{{ asset('/js/notifications/toastr/toastr.js') }}"></script>
+    <script src="{{ asset('/js/notifications/sweetalert2/sweetalert2@9.js') }}"></script>
+    <script src="{{ asset('/js/validaciones.js') }}"></script>
     <script>
         $('#btnLogin').click(function(event) {
             var form = $('#frmLogin')
@@ -150,4 +154,5 @@
     </script>
     @yield('script')
 </body>
+
 </html>
