@@ -17,7 +17,7 @@ class SesionController extends Controller
         $correo = $request->email;
         $pass  = $request->password;
 
-        if (auth()->attempt(array('email' => $correo, 'password' => $pass))) {
+        if (auth()->attempt(array('email' => $correo, 'password' => $pass, 'status' => 1))) {
             return response()->json([[1]]);
         } else {
             return response()->json([[3]]);
