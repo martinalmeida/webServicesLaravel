@@ -14,16 +14,11 @@
 @section('content')
     <x-panel title="Tabla Asiganar" subTitle="Asignación de placas a usuarios.">
         <x-table id="tablAsdignar">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Usuario</th>
-                    <th>Placa</th>
-                    <th>Estado</th>
-                    <th width="100px">Acciones</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
+            <th>ID</th>
+            <th>Usuario</th>
+            <th>Placa</th>
+            <th>Estado</th>
+            <th>Acciones</th>
         </x-table>
     </x-panel>
 @endsection

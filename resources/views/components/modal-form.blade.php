@@ -13,7 +13,14 @@
                 </button>
             </div>
             <div class="modal-body">
-                {{ $slot }}
+                <form id="frmRegistro">
+                    @csrf
+                    <div class="form-row">
+                        {{ $slot }}
+                        <div id="inputsEdit">
+                        </div>
+                    </div>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>

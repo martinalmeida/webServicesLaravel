@@ -12,14 +12,9 @@
 @section('content')
     <x-panel title="Tabla Roles" subTitle="solo se puede visualizar información">
         <x-table id="tablaRoles">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Rol</th>
-                    <th>Descripción</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
+            <th>ID</th>
+            <th>Rol</th>
+            <th>Descripción</th>
         </x-table>
     </x-panel>
 @endsection
