@@ -160,7 +160,7 @@
             if ($('#nombre').val() == 0 || $('#correo').val() == 0 || $('#password').val() == 0 || $('#rol').val() == 0) {
                 Command: toastr["error"](
                     "Por favor digite todos los campos del formulario para poder guardarlo.",
-                    "Formulario Imcompleto"
+                    "Formulario Incompleto"
                 );
             }
             else {

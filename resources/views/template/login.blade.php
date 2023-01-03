@@ -142,16 +142,6 @@
     <script src="{{ asset('/js/notifications/toastr/toastr.js') }}"></script>
     <script src="{{ asset('/js/notifications/sweetalert2/sweetalert2@9.js') }}"></script>
     <script src="{{ asset('/js/validaciones.js') }}"></script>
-    <script>
-        $('#btnLogin').click(function(event) {
-            var form = $('#frmLogin')
-            if (form[0].checkValidity() === false) {
-                event.preventDefault()
-                event.stopPropagation()
-            }
-            form.addClass('was-validated');
-        });
-    </script>
     @yield('script')
 </body>
 
