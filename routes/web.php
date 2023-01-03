@@ -29,3 +29,4 @@ Route::get('tablAsignar', [AsignarController::class, 'dataTableAsignar'])->name(
 Route::get('/roles', [RolController::class, 'index'])->middleware('auth');
 Route::get('tablaRoles', [RolController::class, 'dataTableRol'])->name('table.roles')->middleware('auth');
 Route::get('/selectRol', [RolController::class, 'selectRol'])->name('select.roles')->middleware('auth');
+Route::get('/rol/{id}', [RolController::class, 'selectRolId'])->middleware('auth');

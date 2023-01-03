@@ -58,7 +58,7 @@
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-5 col-xl-4 ml-auto">
                                 <h1 class="text-white fw-300 mb-3 d-sm-block d-md-none">
-                                    Inicio de sesión seguro
+                                    Inicio de sesión
                                 </h1>
                                 <div class="card p-4 rounded-plus bg-faded">
 
@@ -137,6 +137,7 @@
         <span class="color-fusion-800"></span>
         <span class="color-fusion-900"></span>
     </p>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script src="{{ asset('/js/vendors.bundle.js') }}"></script>
     <script src="{{ asset('/js/app.bundle.js') }}"></script>
     <script src="{{ asset('/js/notifications/toastr/toastr.js') }}"></script>

@@ -6,7 +6,7 @@
 
 @section('head')
     <x-header title="Usuarios">
-        <button type="button" class="btn btn-info active" onclick="showModalRegistro();">
+        <button type="button" class="btn btn-info active m-4" onclick="showModalRegistro();">
             Agregar <i class="fal fa-plus-square"></i>
         </button>
     </x-header>
@@ -26,6 +26,10 @@
     </x-panel>
 
     <x-modal-form id="ModalRegistro" title="Registro de Usuarios" text="Los usuarios que crees se limitan a dos roles.">
+        <div class="col-md-12 mb-3">
+            <lottie-player src="https://assets8.lottiefiles.com/private_files/lf30_wuojlcng.json" background="transparent"
+                speed="1" style="width: 20%; margin: auto;" loop autoplay></lottie-player>
+        </div>
         <div class="col-md-6 mb-3">
             <label class="form-label" for="nombre">Nombre de Usuario</label>
             <input type="text" onKeyPress="if(this.value.length==80)return false;" class="form-control" id="nombre"
