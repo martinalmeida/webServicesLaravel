@@ -161,7 +161,8 @@
         }
 
         function register(form) {
-            if ($('#nombre').val() == 0 || $('#correo').val() == 0 || $('#password').val() == 0 || $('#rol').val() == 0) {
+            if ($('#nombre').val() == 0 || $('#correo').val() == 0 || $('#password').val() == 0 || $('#rol').val() ==
+                null) {
                 Command: toastr["error"](
                     "Por favor digite todos los campos del formulario para poder guardarlo.",
                     "Formulario Incompleto"
@@ -272,7 +273,7 @@
         function statusChange(id, status) {
             $.ajax({
                 type: 'GET',
-                url: '/status/' + id + '/' + status,
+                url: '/statusUser/' + id + '/' + status,
                 success: function(result) {
                     if (result.status == true) {
                         Command: toastr["success"](
@@ -335,7 +336,7 @@
                 preConfirm: function() {
                     $.ajax({
                         type: 'GET',
-                        url: '/delete/' + id,
+                        url: '/deleteUser/' + id,
                         success: function(result) {
                             if (result.status == true) {
                                 Command: toastr["success"](

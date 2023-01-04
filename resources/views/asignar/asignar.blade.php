@@ -5,7 +5,7 @@
 @endsection
 
 @section('head')
-    <x-header title="Asignar Placas a Usuarios">
+    <x-header title="Asignar Placas">
         <button type="button" class="btn btn-info active m-4" onclick="showModalRegistro();">
             Agregar <i class="fal fa-plus-square"></i>
         </button>
@@ -113,7 +113,7 @@
         function selects() {
             $.ajax({
                 dataType: "json",
-                url: "{{ route('select.roles') }}",
+                url: "{{ route('select.users') }}",
                 type: "GET",
                 success: function(result) {
 
@@ -122,7 +122,7 @@
                         html += '<option value="' +
                             result[i].id +
                             '">' +
-                            result[i].rol +
+                            result[i].name +
                             '</option>';
                     }
                     $("#usuario").html(html);
@@ -145,7 +145,7 @@
             });
             $.ajax({
                 dataType: "json",
-                url: "{{ route('select.roles') }}",
+                url: "{{ route('select.placas') }}",
                 type: "GET",
                 success: function(result) {
 
@@ -154,7 +154,7 @@
                         html += '<option value="' +
                             result[i].id +
                             '">' +
-                            result[i].rol +
+                            result[i].placa +
                             '</option>';
                     }
                     $("#placa").html(html);
@@ -178,14 +178,15 @@
         }
 
         function register(form) {
-            if ($('#nombre').val() == 0 || $('#correo').val() == 0 || $('#password').val() == 0 || $('#rol').val() == 0) {
+            console.log($('#usuario').val())
+            if ($('#usuario').val() == null || $('#placa').val() == null) {
                 Command: toastr["error"](
                     "Por favor digite todos los campos del formulario para poder guardarlo.",
                     "Formulario Incompleto"
                 );
             }
             else {
-                edit == true ? peticion = "/updateUser" : peticion = "/createUser";
+                edit == true ? peticion = "/updateAsigne" : peticion = "/createAsigne";
                 var data = $("#" + form).serialize();
                 $.ajaxSetup({
                     headers: {
@@ -252,17 +253,18 @@
             edit = true;
             $.ajax({
                 type: 'GET',
-                url: '/user/' + id,
+                url: '/asignar/' + id,
                 success: function(result) {
                     $("#btnRegistro").text("Editar Registro");
                     $("#btnRegistro").attr("onclick", "register('frmRegistro');");
                     $("#btnRegistro").removeClass("btn btn-info");
                     $("#btnRegistro").addClass("btn btn-success");
-                    $("#nombre").val(result[0].name);
-                    $("#correo").val(result[0].email);
-                    $("#rol").val(result[0].rolId);
-                    $("#rol").val(result[0].rolId).trigger("change");
-                    $("#inputsEdit").html('<input type="hidden" id="idUser" name="idUser" value="' + result[0]
+                    $("#usuario").val(result[0].userId);
+                    $("#usuario").val(result[0].userId).trigger("change");
+                    $("#placa").val(result[0].placaId);
+                    $("#placa").val(result[0].placaId).trigger("change");
+                    $("#inputsEdit").html('<input type="hidden" id="idAsigne" name="idAsigne" value="' + result[
+                            0]
                         .id + '">');
                     $("#ModalRegistro").modal({
                         backdrop: "static",
@@ -289,7 +291,7 @@
         function statusChange(id, status) {
             $.ajax({
                 type: 'GET',
-                url: '/status/' + id + '/' + status,
+                url: '/statusAsigne/' + id + '/' + status,
                 success: function(result) {
                     if (result.status == true) {
                         Command: toastr["success"](
@@ -352,7 +354,7 @@
                 preConfirm: function() {
                     $.ajax({
                         type: 'GET',
-                        url: '/delete/' + id,
+                        url: '/deleteAsigne/' + id,
                         success: function(result) {
                             if (result.status == true) {
                                 Command: toastr["success"](

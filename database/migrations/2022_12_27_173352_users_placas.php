@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('userId');
             $table->foreign('userId')->references('id')->on('users');
             $table->bigInteger('placaId')->unique();
+            $table->bigInteger('nit')->default(829004210);
             $table->smallInteger('status')->default(1);
             $table->timestamps();
         });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Rol;
 use DataTables;
 use Hash;
 
@@ -21,6 +22,7 @@ class UserController extends Controller
             $data = User::join('roles', 'roles.id', '=', 'users.rolId')
                 ->join('status', 'status.id', '=', 'users.status')
                 ->whereIn('users.status', array(1, 2))
+                ->where('users.nit', '=', auth()->user()->nit)
                 ->orderBy('users.id', 'desc')
                 ->get(['users.id', 'roles.rol', 'users.name', 'users.email', 'users.password AS contrasenia', 'status.status', 'users.status AS estado']);
             return Datatables::of($data)->addIndexColumn()
@@ -34,6 +36,14 @@ class UserController extends Controller
                 ->make(true);
         }
         return view('tablaUsers');
+    }
+
+    public function selectRol(Request $request)
+    {
+        if ($request->ajax()) {
+            $roles = Rol::select('id', 'rol')->get();
+        }
+        return response()->json($roles);
     }
 
     public function create(Request $request)

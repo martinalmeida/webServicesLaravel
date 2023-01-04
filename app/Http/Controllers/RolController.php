@@ -28,14 +28,6 @@ class RolController extends Controller
         return view('tablaRoles');
     }
 
-    public function selectRol(Request $request)
-    {
-        if ($request->ajax()) {
-            $roles = Rol::select('id', 'rol')->get();
-        }
-        return response()->json($roles);
-    }
-
     public function selectRolId($id)
     {
         $user = Rol::where('id', $id)->get();
