@@ -21,7 +21,7 @@
         </x-table>
     </x-panel>
 
-    <x-modal-form id="ModalVer" title="Registro de Usuarios" text="Los usuarios que crees se limitan a dos roles.">
+    <x-modal-form id="ModalVer" title="Ver Rol" text="Los roles son el perfil para cada usuario.">
         <div class="col-md-12 mb-3">
             <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_s31beiqq.json" background="transparent"
                 speed="1" style="width: 20%; margin: auto;" loop autoplay></lottie-player>
