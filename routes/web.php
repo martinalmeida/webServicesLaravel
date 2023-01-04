@@ -5,6 +5,7 @@ use App\Http\Controllers\SesionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AsignarController;
 use App\Http\Controllers\RolController;
+use App\Http\Controllers\informeController;
 
 // Rutas Login
 Route::get('/', [SesionController::class, 'index'])->name('login');
@@ -37,3 +38,6 @@ Route::get('/deleteAsigne/{id}', [AsignarController::class, 'delete'])->middlewa
 Route::get('/roles', [RolController::class, 'index'])->middleware('auth');
 Route::get('tablaRoles', [RolController::class, 'dataTableRol'])->name('table.roles')->middleware('auth');
 Route::get('/rol/{id}', [RolController::class, 'selectRolId'])->middleware('auth');
+
+// Rutas Informes a Propietario
+Route::get('/informes', [informeController::class, 'index'])->middleware('auth');

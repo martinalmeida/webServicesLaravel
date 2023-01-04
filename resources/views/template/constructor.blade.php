@@ -94,14 +94,14 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="#" title="Category" data-filter-tags="category">
+                                <a href="/informes" title="Category" data-filter-tags="category">
                                     <i class="fal fa-file-chart-line"></i>
                                     <span class="nav-link-text" data-i18n="nav.category">Informes Socios</span>
                                 </a>
                             </li>
                         @elseif (auth()->user()->rolId === 2)
                             <li>
-                                <a href="#" title="Category" data-filter-tags="category">
+                                <a href="/informes" title="Category" data-filter-tags="category">
                                     <i class="fal fa-file-chart-line"></i>
                                     <span class="nav-link-text" data-i18n="nav.category">Informes Socios</span>
                                 </a>
