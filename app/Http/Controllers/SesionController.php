@@ -26,7 +26,7 @@ class SesionController extends Controller
 
     public function home()
     {
-        return view('home.home');
+        return view('home.home', ['routeActive' => 'home']);
     }
 
     public function logout(Request $request)

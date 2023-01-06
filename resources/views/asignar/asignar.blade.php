@@ -426,9 +426,5 @@
             $("#btnRegistro").removeClass("btn btn-success");
             $("#btnRegistro").addClass("btn btn-info");
         }
-
-        function reajustDatatables() {
-            tablAsignar.columns.adjust().draw();
-        }
     </script>
 @endsection

@@ -41,3 +41,8 @@ Route::get('/rol/{id}', [RolController::class, 'selectRolId'])->middleware('auth
 
 // Rutas Informes a Propietario
 Route::get('/informes', [informeController::class, 'index'])->middleware('auth');
+Route::get('/alquiler', [informeController::class, 'alquiler'])->middleware('auth');
+Route::get('/flete', [informeController::class, 'flete'])->middleware('auth');
+Route::get('/movimiento', [informeController::class, 'movimiento'])->middleware('auth');
+Route::get('selectPlacaInforme', [informeController::class, 'selectPlacaInforme'])->name('select.placasInforme')->middleware('auth');
+Route::get('tablaInformeAlquiler', [informeController::class, 'dataTableInfomeAlquiler'])->name('table.informeAlquiler')->middleware('auth');

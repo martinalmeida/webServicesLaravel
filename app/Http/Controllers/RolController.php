@@ -10,7 +10,11 @@ class RolController extends Controller
 {
     public function index()
     {
-        return view('roles.roles');
+        if (auth()->user()->rolId == 1) {
+            return view('roles.roles', ['routeActive' => 'roles']);
+        } else {
+            return view('home.home', ['routeActive' => 'home']);
+        }
     }
 
     public function dataTableRol(Request $request)

@@ -35,7 +35,7 @@
             <!-- BEGIN Left Aside -->
             <aside class="page-sidebar">
                 <div class="page-logo">
-                    <a href="./home"
+                    <a href="/home"
                         class="page-logo-link press-scale-down d-flex align-items-center position-relative">
                         <img src="{{ asset('/build/img/logo.png') }}" alt="SmartAdmin WebApp"
                             aria-roledescription="logo">
@@ -62,21 +62,32 @@
 
                         <li class="nav-title">WebServices Menu</li>
 
-                        @if (auth()->user()->rolId === 1)
-                            <li>
+                        <li class="{{ $routeActive == 'home' ? 'active' : '' }}">
+                            <a href="/home" title="Category" data-filter-tags="category">
+                                <i class="fal fa-house"></i>
+                                <span class="nav-link-text" data-i18n="nav.category">Inicio</span>
+                            </a>
+                        </li>
+
+                        @if (auth()->user()->rolId == 1)
+                            <li
+                                class="{{ $routeActive == 'users' ? 'active open' : '' }}
+                                {{ $routeActive == 'asignar' ? 'active open' : '' }}
+                                {{ $routeActive == 'roles' ? 'active open' : '' }}">
+
                                 <a href="#" title="Category" data-filter-tags="category">
                                     <i class="fal fa-user-cog"></i>
                                     <span class="nav-link-text" data-i18n="nav.category">Adminstrar</span>
                                 </a>
                                 <ul>
-                                    <li>
+                                    <li class="{{ $routeActive == 'users' ? 'active' : '' }}">
                                         <a href="/users" title="Disabled item"
                                             data-filter-tags="utilities disabled item">
                                             <span class="nav-link-text"
                                                 data-i18n="nav.utilities_menu_child_another_item">Usuarios</span>
                                         </a>
                                     </li>
-                                    <li>
+                                    <li class="{{ $routeActive == 'asignar' ? 'active' : '' }}">
                                         <a href="/asignar" title="Disabled item"
                                             data-filter-tags="utilities disabled item">
                                             <span class="nav-link-text"
@@ -84,7 +95,7 @@
                                                 Placas</span>
                                         </a>
                                     </li>
-                                    <li>
+                                    <li class="{{ $routeActive == 'roles' ? 'active' : '' }}">
                                         <a href="/roles" title="Disabled item"
                                             data-filter-tags="utilities disabled item">
                                             <span class="nav-link-text"
@@ -93,17 +104,19 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li>
+                            <li class="{{ $routeActive == 'informes' ? 'active' : '' }}">
                                 <a href="/informes" title="Category" data-filter-tags="category">
                                     <i class="fal fa-file-chart-line"></i>
-                                    <span class="nav-link-text" data-i18n="nav.category">Informes Socios</span>
+                                    <span class="nav-link-text" data-i18n="nav.category">Informes
+                                        Socios </span>
                                 </a>
                             </li>
-                        @elseif (auth()->user()->rolId === 2)
-                            <li>
+                        @elseif (auth()->user()->rolId == 2)
+                            <li class="{{ $routeActive == 'informes' ? 'active' : '' }}">
                                 <a href="/informes" title="Category" data-filter-tags="category">
                                     <i class="fal fa-file-chart-line"></i>
-                                    <span class="nav-link-text" data-i18n="nav.category">Informes Socios</span>
+                                    <span class="nav-link-text" data-i18n="nav.category">Informes
+                                        Socios</span>
                                 </a>
                             </li>
                         @endif
@@ -132,7 +145,7 @@
                     <!-- DOC: nav menu layout change shortcut -->
                     <div class="hidden-md-down dropdown-icon-menu position-relative">
                         <a href="#" class="header-btn btn js-waves-off" data-action="toggle"
-                            data-class="nav-function-minify" title="Minimizar Menu" onclick="reajustDatatables();">
+                            data-class="nav-function-minify" title="Minimizar Menu">
                             <i class="ni ni-menu"></i>
                         </a>
                     </div>

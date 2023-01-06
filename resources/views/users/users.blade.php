@@ -81,8 +81,8 @@
                         name: 'email'
                     },
                     {
-                        data: 'contrasenia',
-                        name: 'contrasenia'
+                        data: 'psswd',
+                        name: 'psswd'
                     },
                     {
                         data: 'rol',
@@ -407,10 +407,6 @@
             $("#imagenBase64").html("");
             $("#btnRegistro").removeClass("btn btn-success");
             $("#btnRegistro").addClass("btn btn-info");
-        }
-
-        function reajustDatatables() {
-            tablaUsuarios.columns.adjust().draw();
         }
     </script>
 @endsection

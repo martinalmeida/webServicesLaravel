@@ -1,126 +1,55 @@
 @extends('template.constructor')
 
 @section('title')
-    VolApp - Roles
+    VolApp - Informes
 @endsection
 
 @section('head')
-    <x-header title="Roles">
-        <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_4kxDIRVtSo.json" background="transparent"
+    <x-header title="Informes a Proovedores">
+        <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_cRqOdOiWmq.json" background="transparent"
             speed="1" style="width: 6%;" loop autoplay></lottie-player>
     </x-header>
 @endsection
 
 @section('content')
-    <x-panel title="Tabla Roles" subTitle="solo se puede visualizar información">
-        <x-table id="tablaRoles">
-            <th>ID</th>
-            <th>Rol</th>
-            <th>Descripción</th>
-            <th>Acciones</th>
-        </x-table>
+    <x-panel title="Informes a Proovedor" subTitle="modulo de generación de informes.">
+        <div class="card-group">
+            <div class="card bg-success">
+                <div class="card-body text-center">
+                    <h3 class="card-title text-white">Informe por Alquiler</h3>
+                    <h1 class="text-white"><i class="fal fa-hands-usd fa-4x"></i></i></h1>
+                    <p class="card-text text-white">En el modo alquiler se calcula el Stand By de horas, u horometro final
+                        menos horometro inicial.</p>
+                    <a class="btn btn-outline-light btn-pills text-white waves-effect waves-themed" href="/alquiler">Ingresar
+                        al
+                        Informe por Alquiler</a>
+                </div>
+            </div>
+            <div class="card bg-info">
+                <div class="card-body text-center">
+                    <h3 class="card-title text-white">Informe por Flete</h3>
+                    <h1 class="text-white"><i class="fal fa-route fa-4x"></i></h1>
+                    <p class="card-text text-white">En el modo flete se calcula solo un valor pactado por viaje con el socio
+                        o dueño del vehículo.</p>
+                    <a class="btn btn-outline-light btn-pills text-white waves-effect waves-themed" href="/flete">Ingresar
+                        al Informe por Fletes</a>
+                </div>
+            </div>
+            <div class="card bg-primary">
+                <div class="card-body text-center">
+                    <h3 class="card-title text-white">Informe por Movimiento</h3>
+                    <h1 class="text-white"><i class="fal fa-truck-container fa-4x"></i></h1>
+                    <p class="card-text text-white">Calculo de nro de viajes, tarifa de ruta pactada, metraje cubico y
+                        kilometros recorridos.</p>
+                    <a class="btn btn-outline-light btn-pills text-white waves-effect waves-themed"
+                        href="/movimiento">Ingresar al
+                        Informe por Movimientos</a>
+                </div>
+            </div>
+        </div>
     </x-panel>
-
-    <x-modal-form id="ModalVer" title="Ver Rol" text="Los roles son el perfil para cada usuario.">
-        <div class="col-md-12 mb-3">
-            <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_s31beiqq.json" background="transparent"
-                speed="1" style="width: 20%; margin: auto;" loop autoplay></lottie-player>
-        </div>
-        <div class="col-md-12 mb-3">
-            <label class="form-label" for="rol">Nombre de Rol</label>
-            <input type="text" class="form-control" id="rol">
-        </div>
-        <div class="col-md-12 mb-3">
-            <label class="form-label" for="descripcion">Descripción de Rol</label>
-            <textarea class="form-control" id="descripcion" rows="5" style="height: 77px;"></textarea>
-        </div>
-    </x-modal-form>
 @endsection
 
 @section('subName')
-    Pagina de Roles
-@endsection
-
-@section('script')
-    <script type="text/javascript">
-        $(function() {
-            var table = $('#tablaRoles').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: "{{ route('table.roles') }}",
-                columns: [{
-                        data: 'id',
-                        name: 'id'
-                    },
-                    {
-                        data: 'rol',
-                        name: 'rol'
-                    },
-                    {
-                        data: 'descripcion',
-                        name: 'descripcion'
-                    },
-                    {
-                        data: 'action',
-                        name: 'action',
-                        orderable: false,
-                        searchable: false
-                    },
-                ],
-                responsive: true,
-                lengthChange: false,
-                dom: "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
-                    "<'row'<'col-sm-12'tr>>" +
-                    "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-                buttons: [{
-                        extend: 'pdfHtml5',
-                        text: 'PDF',
-                        titleAttr: 'Generate PDF',
-                        className: 'btn-outline-danger btn-sm mr-1'
-                    },
-                    {
-                        extend: 'excelHtml5',
-                        text: 'Excel',
-                        titleAttr: 'Generate Excel',
-                        className: 'btn-outline-success btn-sm mr-1'
-                    }
-                ]
-            });
-        });
-
-        function visualizar(id) {
-            edit = true;
-            $.ajax({
-                type: 'GET',
-                url: '/rol/' + id,
-                success: function(result) {
-                    $("#btnRegistro").text("Ver Registro");
-                    $("#btnRegistro").addClass("btn btn-info");
-                    $('#btnRegistro').attr('disabled', true);
-                    $("#rol").val(result[0].rol);
-                    $('#rol').attr('disabled', true);
-                    $("#descripcion").val(result[0].descripcion);
-                    $('#descripcion').attr('disabled', true);
-                    $("#ModalVer").modal({
-                        backdrop: "static",
-                        keyboard: false,
-                    });
-                },
-                error: function(xhr) {
-                    console.log(xhr);
-                    Swal.fire({
-                        icon: "error",
-                        title: "<strong>Error!</strong>",
-                        html: "<h5>Se ha presentado un error, por favor informar al area de Sistemas.</h5>",
-                        showCloseButton: true,
-                        showConfirmButton: false,
-                        cancelButtonText: "Cerrar",
-                        cancelButtonColor: "#dc3545",
-                        showCancelButton: true,
-                        backdrop: true,
-                    });
-                },
-            });
-        }
-    </script>
+    Pagina de Informes
 @endsection

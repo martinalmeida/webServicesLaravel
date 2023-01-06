@@ -13,7 +13,11 @@ class AsignarController extends Controller
 {
     public function index()
     {
-        return view('asignar.asignar');
+        if (auth()->user()->rolId == 1) {
+            return view('asignar.asignar', ['routeActive' => 'asignar']);
+        } else {
+            return view('home.home', ['routeActive' => 'home']);
+        }
     }
 
     public function dataTableAsignar(Request $request)
