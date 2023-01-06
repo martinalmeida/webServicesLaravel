@@ -28,7 +28,7 @@ class UserController extends Controller
                 ->whereIn('users.status', array(1, 2))
                 ->where('users.nit', '=', auth()->user()->nit)
                 ->orderBy('users.id', 'desc')
-                ->get(['users.id', 'roles.rol', 'users.name', 'users.email', 'users.password AS psswd', 'status.status', 'users.status AS estado']);
+                ->get(['users.id', 'roles.rol', 'users.name', 'users.email', 'status.status', 'users.status AS estado']);
             return Datatables::of($data)->addIndexColumn()
                 ->addColumn('action', function ($row) {
                     $butons = '<div class="text-center"><a onclick="listData(' . $row['id'] . ');" class="btn btn-success btn-sm text-white" title="Editar Usuario"><i class="fal fa-user-edit"></i></a> ';

@@ -18,7 +18,6 @@
             <th>ID</th>
             <th>Nombre</th>
             <th>Correo Electronico</th>
-            <th>Contraseña</th>
             <th>Rol</th>
             <th>Estado</th>
             <th>Acciones</th>
@@ -79,10 +78,6 @@
                     {
                         data: 'email',
                         name: 'email'
-                    },
-                    {
-                        data: 'psswd',
-                        name: 'psswd'
                     },
                     {
                         data: 'rol',
