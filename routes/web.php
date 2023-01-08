@@ -8,41 +8,53 @@ use App\Http\Controllers\RolController;
 use App\Http\Controllers\informeController;
 
 // Rutas Login
-Route::get('/', [SesionController::class, 'index'])->name('login');
-Route::post('/check', [SesionController::class, 'check']);
-Route::get('/home', [SesionController::class, 'home'])->middleware('auth');
-Route::get('/logout', [SesionController::class, 'logout']);
+Route::controller(SesionController::class)->group(function () {
+    Route::get('/orders/{id}', 'show');
+    Route::post('/orders', 'store');
+    Route::get('/', 'index')->name('login');
+    Route::post('/check', 'check');
+    Route::get('/home', 'home')->middleware('auth');
+    Route::get('/logout', 'logout');
+});
 
 // Rutas Usuarios Adminstrar
-Route::get('/users', [UserController::class, 'index'])->middleware('auth');
-Route::get('tablaUsers', [UserController::class, 'dataTableUser'])->name('table.user')->middleware('auth');
-Route::get('selectRol', [UserController::class, 'selectRol'])->name('select.roles')->middleware('auth');
-Route::post('/createUser', [UserController::class, 'create'])->middleware('auth');
-Route::get('/user/{id}', [UserController::class, 'selectUser'])->middleware('auth');
-Route::post('/updateUser', [UserController::class, 'update'])->middleware('auth');
-Route::get('/statusUser/{id}/{status}', [UserController::class, 'status'])->middleware('auth');
-Route::get('/deleteUser/{id}', [UserController::class, 'delete'])->middleware('auth');
+Route::controller(UserController::class)->group(function () {
+    Route::get('/users', 'index')->middleware('auth');
+    Route::get('tablaUsers', 'dataTableUser')->name('table.user')->middleware('auth');
+    Route::get('selectRol', 'selectRol')->name('select.roles')->middleware('auth');
+    Route::post('/createUser', 'create')->middleware('auth');
+    Route::get('/user/{id}', 'selectUser')->middleware('auth');
+    Route::post('/updateUser', 'update')->middleware('auth');
+    Route::get('/statusUser/{id}/{status}', 'status')->middleware('auth');
+    Route::get('/deleteUser/{id}', 'delete')->middleware('auth');
+});
 
 // Rutas Asignar placas
-Route::get('/asignar', [AsignarController::class, 'index'])->middleware('auth');
-Route::get('tablAsignar', [AsignarController::class, 'dataTableAsignar'])->name('table.asignar')->middleware('auth');
-Route::get('selectUser', [AsignarController::class, 'selectUsers'])->name('select.users')->middleware('auth');
-Route::get('selectPlaca', [AsignarController::class, 'selectPlaca'])->name('select.placas')->middleware('auth');
-Route::post('/createAsigne', [AsignarController::class, 'create'])->middleware('auth');
-Route::get('/asignar/{id}', [AsignarController::class, 'selectAsigne'])->middleware('auth');
-Route::post('/updateAsigne', [AsignarController::class, 'update'])->middleware('auth');
-Route::get('/statusAsigne/{id}/{status}', [AsignarController::class, 'status'])->middleware('auth');
-Route::get('/deleteAsigne/{id}', [AsignarController::class, 'delete'])->middleware('auth');
+Route::controller(AsignarController::class)->group(function () {
+    Route::get('/asignar', 'index')->middleware('auth');
+    Route::get('tablAsignar', 'dataTableAsignar')->name('table.asignar')->middleware('auth');
+    Route::get('selectUser', 'selectUsers')->name('select.users')->middleware('auth');
+    Route::get('selectPlaca', 'selectPlaca')->name('select.placas')->middleware('auth');
+    Route::post('/createAsigne', 'create')->middleware('auth');
+    Route::get('/asignar/{id}', 'selectAsigne')->middleware('auth');
+    Route::post('/updateAsigne', 'update')->middleware('auth');
+    Route::get('/statusAsigne/{id}/{status}', 'status')->middleware('auth');
+    Route::get('/deleteAsigne/{id}', 'delete')->middleware('auth');
+});
 
 // Rutas Roles Listar
-Route::get('/roles', [RolController::class, 'index'])->middleware('auth');
-Route::get('tablaRoles', [RolController::class, 'dataTableRol'])->name('table.roles')->middleware('auth');
-Route::get('/rol/{id}', [RolController::class, 'selectRolId'])->middleware('auth');
+Route::controller(RolController::class)->group(function () {
+    Route::get('/roles', 'index')->middleware('auth');
+    Route::get('tablaRoles', 'dataTableRol')->name('table.roles')->middleware('auth');
+    Route::get('/rol/{id}', 'selectRolId')->middleware('auth');
+});
 
 // Rutas Informes a Propietario
-Route::get('/informes', [informeController::class, 'index'])->middleware('auth');
-Route::get('/alquiler', [informeController::class, 'alquiler'])->middleware('auth');
-Route::get('/flete', [informeController::class, 'flete'])->middleware('auth');
-Route::get('/movimiento', [informeController::class, 'movimiento'])->middleware('auth');
-Route::get('selectPlacaInforme', [informeController::class, 'selectPlacaInforme'])->name('select.placasInforme')->middleware('auth');
-Route::get('tablaInformeAlquiler', [informeController::class, 'dataTableInfomeAlquiler'])->name('table.informeAlquiler')->middleware('auth');
+Route::controller(informeController::class)->group(function () {
+    Route::get('/informes', 'index')->middleware('auth');
+    Route::get('/alquiler', 'alquiler')->middleware('auth');
+    Route::get('/flete', 'flete')->middleware('auth');
+    Route::get('/movimiento', 'movimiento')->middleware('auth');
+    Route::get('selectPlacaInforme', 'selectPlacaInforme')->name('select.placasInforme')->middleware('auth');
+    Route::get('tablaInformeAlquiler', 'dataTableInfomeAlquiler')->name('table.informeAlquiler')->middleware('auth');
+});
