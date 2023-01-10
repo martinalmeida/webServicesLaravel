@@ -57,4 +57,6 @@ Route::controller(informeController::class)->group(function () {
     Route::get('/movimiento', 'movimiento')->middleware('auth');
     Route::get('selectPlacaInforme', 'selectPlacaInforme')->name('select.placasInforme')->middleware('auth');
     Route::post('tablaInformeAlquiler', 'dataTableInfomeAlquiler')->name('table.informeAlquiler')->middleware('auth');
+    Route::post('tablaInformeFlete', 'dataTableInfomeFlete')->name('table.informeFlete')->middleware('auth');
+    Route::post('tablaInformeMovimiento', 'dataTableInfomeMovimiento')->name('table.informeMovimiento')->middleware('auth');
 });

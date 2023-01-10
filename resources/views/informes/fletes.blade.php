@@ -115,60 +115,131 @@
         }
 
         function cargarTablaInforme() {
-            html =
-                '<table id="tablaRoles" class="table table-bordered table-hover table-striped w-100"><thead><tr>' +
-                '<th>ID</th><th>Rol</th><th>Descripción</th><th>Acciones</th></tr></thead><tbody></tbody></table>';
-            $("#tablaInforme").html(html);
-
             let placa = $("#placa").val();
             let fechaInicio = $("#fechaInicio").val();
             let fechaFin = $("#fechaFin").val();
 
-            tablaInformes = $('#tablaRoles').DataTable({
-                processing: true,
-                serverSide: true,
-                searching: false,
-                destroy: true,
-                ajax: {
-                    url: "{{ route('table.informeAlquiler') }}",
-                    type: "POST",
-                    data: {
-                        placa: placa,
-                        fechaInicio: fechaInicio,
-                        fechaFin: fechaFin,
+            if (placa == null || fechaInicio == 0 || fechaFin == 0) {
+                Command: toastr["error"](
+                    "Por favor digite todos los campos del formulario.",
+                    "Formulario Incompleto"
+                );
+                toastr.options = {
+                    closeButton: false,
+                    debug: false,
+                    newestOnTop: true,
+                    progressBar: true,
+                    positionClass: "toast-top-right",
+                    preventDuplicates: true,
+                    onclick: null,
+                    showDuration: 300,
+                    hideDuration: 100,
+                    timeOut: 5000,
+                    extendedTimeOut: 1000,
+                    showEasing: "swing",
+                    hideEasing: "linear",
+                    showMethod: "fadeIn",
+                    hideMethod: "fadeOut",
+                };
+            }
+            else {
+                html =
+                    '<table id="tablaInformes" class="table table-bordered table-hover table-striped w-100"><thead><tr>' +
+                    "<th>Codigo Ficha</th><th>Placa o #Registro</th><th>fecha Inicio</th><th>fecha Fin</th><th>Titulo del Contrato</th>" +
+                    "<th>Ruta (Origen - Destino)</th><th>Valor de Flete</th><th>Deducible Administración</th><th>Deducible Retefuente</th>" +
+                    "<th>Deducible Reteica</th><th>Deducible Anticipo</th><th>Otros Deducibles</th><th>Total</th><th>Observación</th>" +
+                    "</tr></thead><tbody></tbody></table>";
+                $("#tablaInforme").html(html);
+
+                tablaInformes = $('#tablaInformes').DataTable({
+                    processing: true,
+                    serverSide: true,
+                    searching: false,
+                    destroy: true,
+                    ajax: {
+                        url: "{{ route('table.informeFlete') }}",
+                        type: "POST",
+                        data: {
+                            placa: placa,
+                            fechaInicio: fechaInicio,
+                            fechaFin: fechaFin,
+                            _token: '{{ csrf_token() }}'
+                        },
+                        dataType: "json",
                     },
-                    dataType: "json",
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                },
-                columns: [{
-                        data: 'id',
-                        name: 'id'
-                    },
-                    {
-                        data: 'rol',
-                        name: 'rol'
-                    },
-                    {
-                        data: 'descripcion',
-                        name: 'descripcion'
-                    },
-                ],
-                responsive: true,
-                lengthChange: false,
-                dom: "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
-                    "<'row'<'col-sm-12'tr>>" +
-                    "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-                buttons: [{
-                    extend: 'excelHtml5',
-                    autoFilter: true,
-                    text: "Descargar <i class='fal fa-file-excel'></i>",
-                    titleAttr: 'Generate Excel',
-                    className: "bg-success-900 btn-sm mr-1",
-                    title: "Informe para el Proovedor por Alquiler",
-                }]
-            });
+                    columns: [{
+                            data: 'codFicha',
+                            name: 'codFicha'
+                        },
+                        {
+                            data: 'placa',
+                            name: 'placa'
+                        },
+                        {
+                            data: 'fechaInicio',
+                            name: 'fechaInicio'
+                        },
+                        {
+                            data: 'fechaFin',
+                            name: 'fechaFin'
+                        },
+                        {
+                            data: 'titulo',
+                            name: 'titulo'
+                        },
+                        {
+                            data: 'ruta',
+                            name: 'ruta'
+                        },
+                        {
+                            data: 'flete',
+                            name: 'flete'
+                        },
+                        {
+                            data: 'admon',
+                            name: 'admon'
+                        },
+                        {
+                            data: 'retefuente',
+                            name: 'retefuente'
+                        },
+                        {
+                            data: 'reteica',
+                            name: 'reteica'
+                        },
+                        {
+                            data: 'anticipo',
+                            name: 'anticipo'
+                        },
+                        {
+                            data: 'otros',
+                            name: 'otros'
+                        },
+                        {
+                            data: 'total',
+                            name: 'total'
+                        },
+                        {
+                            data: 'observacion',
+                            name: 'observacion'
+                        },
+                    ],
+                    responsive: true,
+                    lengthChange: false,
+                    dom: "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                        "<'row'<'col-sm-12'tr>>" +
+                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                    buttons: [{
+                        extend: 'excelHtml5',
+                        autoFilter: true,
+                        text: "Descargar <i class='fal fa-file-excel'></i>",
+                        titleAttr: 'Generate Excel',
+                        className: "bg-success-900 btn-sm mr-1",
+                        title: "Informe para el Proovedor por Flete",
+                    }],
+                    paging: false
+                });
+            }
         }
     </script>
 @endsection
