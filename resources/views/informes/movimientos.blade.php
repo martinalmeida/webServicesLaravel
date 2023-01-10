@@ -35,7 +35,7 @@
             </form>
             <button type="button" id="btnGenerar"
                 class="btn btn-primary btn-pills btn-block waves-effect waves-themed">Generar el Informe para el
-                Proovedor por Alquiler <i class="fal fa-file-download"></i></button>
+                Proovedor por Movimiento <i class="fal fa-file-download"></i></button>
         </div>
         <div class="panel-content" id="tablaInforme">
         </div>

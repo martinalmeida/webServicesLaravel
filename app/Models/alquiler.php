@@ -10,8 +10,4 @@ class Alquiler extends Model
     use HasFactory;
 
     protected $table = 'registros_alquiler';
-
-    protected $fillable = [
-        'id', 'idMaquinaria', 'idAlquiler'
-    ];
 }

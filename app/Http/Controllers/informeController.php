@@ -62,13 +62,39 @@ class informeController extends Controller
     public function dataTableInfomeAlquiler(Request $request)
     {
         if ($request->ajax()) {
-            $data = Alquiler::join('users', 'users.id', '=', 'usersplacas.userId')
-                ->join('status', 'status.id', '=', 'usersplacas.status')
-                ->join('maquinarias', 'maquinarias.id', '=', 'usersplacas.placaId')
-                ->whereIn('usersplacas.status', array(1, 2))
-                ->where('usersplacas.nit', '=', auth()->user()->nit)
-                ->orderBy('usersplacas.id', 'desc')
-                ->get(['usersplacas.id', 'users.name', 'maquinarias.placa', 'status.status', 'usersplacas.status AS estado']);
+            $idPlaca = $request->placa;
+            $inicio = $request->fechaInicio;
+            $final = $request->fechaFin;
+
+            $data = Alquiler::join('maquinarias', 'registros_alquiler.idMaquinaria', '=', 'maquinarias.id')
+                ->join('alquiler', 'registros_alquiler.idAlquiler', '=', 'alquiler.id')
+                ->join('contratos', 'alquiler.idContrato', '=', 'contratos.id')
+                ->leftjoin('deducibles_alquiler', 'deducibles_alquiler.idRegistro', '=', 'registros_alquiler.id')
+                ->select(
+                    'maquinarias.placa',
+                    'registros_alquiler.fechaInicio',
+                    'registros_alquiler.fechaFin',
+                    'contratos.titulo',
+                    'registros_alquiler.horometroInicial',
+                    'registros_alquiler.horometroFin',
+                    'alquiler.standby',
+                    'alquiler.horaTarifa',
+                    'deducibles_alquiler.admon',
+                    'deducibles_alquiler.retefuente',
+                    'deducibles_alquiler.reteica',
+                    'deducibles_alquiler.anticipo',
+                    'deducibles_alquiler.otros',
+                    'deducibles_alquiler.observacion'
+                )
+                ->selectRaw('(registros_alquiler.horometroFin - registros_alquiler.horometroInicial) AS totalHoras')
+                ->selectRaw('((registros_alquiler.horometroFin - registros_alquiler.horometroInicial) * alquiler.horaTarifa) AS subTotal')
+                ->selectRaw('(((registros_alquiler.horometroFin - registros_alquiler.horometroInicial) * (alquiler.horaTarifa)) - (IFNULL(deducibles_alquiler.admon,0) + IFNULL(deducibles_alquiler.retefuente,0) + IFNULL(deducibles_alquiler.reteica,0) + IFNULL(deducibles_alquiler.anticipo,0) + IFNULL(deducibles_alquiler.otros,0))) AS total',)
+                ->where('registros_alquiler.status', '=', 1)
+                ->where('alquiler.status', '=', 1)
+                ->where('registros_alquiler.idMaquinaria', '=', $idPlaca)
+                ->whereRaw("STR_TO_DATE(registros_alquiler.fechaInicio, '%m/%d/%Y') >= STR_TO_DATE('$inicio', '%m/%d/%Y')")
+                ->whereRaw("STR_TO_DATE(registros_alquiler.fechaFin, '%m/%d/%Y') <= STR_TO_DATE('$final', '%m/%d/%Y')")
+                ->get();
 
             return Datatables::of($data)->addIndexColumn()->make(true);
         }
