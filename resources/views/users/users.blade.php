@@ -204,6 +204,7 @@
                             showCancelButton: true,
                             backdrop: true,
                         });
+                        $("#ModalRegistro").modal("hide");
                     },
                 });
             }
@@ -261,6 +262,7 @@
                         showCancelButton: true,
                         backdrop: true,
                     });
+                    $("#ModalRegistro").modal("hide");
                 },
             });
         }
