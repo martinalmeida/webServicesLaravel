@@ -5,7 +5,7 @@
 @endsection
 
 @section('head')
-    <x-header title="Informes a Proovedores">
+    <x-header title="Informes a Proveedores">
         <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_cRqOdOiWmq.json" background="transparent"
             speed="1" style="width: 6%;" loop autoplay></lottie-player>
     </x-header>

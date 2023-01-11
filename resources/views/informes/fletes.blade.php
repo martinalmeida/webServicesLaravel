@@ -5,14 +5,14 @@
 @endsection
 
 @section('head')
-    <x-header title="Informes a Proovedores por Fletes">
+    <x-header title="Informes a Proveedores por Fletes">
         <button type="button" class="btn btn-primary active m-1" onClick="history.go(-1); return false;"><i
                 class="fal fa-arrow-left"></i> Regresar</button>
     </x-header>
 @endsection
 
 @section('content')
-    <x-panel title="Informes a Proovedor por Alquiler" subTitle="modulo de generación de informes.">
+    <x-panel title="Informes a Proveedor por Alquiler" subTitle="modulo de generación de informes.">
         <div class="panel-content">
             <form id="frmRelacion">
                 <div class="form-row">
@@ -35,7 +35,7 @@
             </form>
             <button type="button" id="btnGenerar"
                 class="btn btn-primary btn-pills btn-block waves-effect waves-themed">Generar el Informe para el
-                Proovedor por Flete <i class="fal fa-file-download"></i></button>
+                Proveedor por Flete <i class="fal fa-file-download"></i></button>
         </div>
         <div class="panel-content" id="tablaInforme">
         </div>
@@ -235,7 +235,7 @@
                         text: "Descargar <i class='fal fa-file-excel'></i>",
                         titleAttr: 'Generate Excel',
                         className: "bg-success-900 btn-sm mr-1",
-                        title: "Informe para el Proovedor por Flete",
+                        title: "Informe para el Proveedor por Flete",
                     }],
                     paging: false
                 });

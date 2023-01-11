@@ -104,9 +104,8 @@ class AsignarController extends Controller
 
     public function delete($id)
     {
-        $update = Asignar::where('id', $id)
-            ->limit(1)->update(['status' => 3]);
-        $update ? $response = ['status' => true] : $response = ['status' => false];
+        $delete = Asignar::find($id);
+        $delete->delete() ? $response = ['status' => true] : $response = ['status' => false];
         return response()->json($response);
     }
 }
